@@ -6,8 +6,8 @@ const updateBtn = document.getElementById('update-btn')
 const deleteBtn = document.getElementById('delete-btn')
 
 const url = window.location.href + "data/"
-const updateurl = window.location.href + "update/"
-const deleteurl = window.location.href + "delete/"
+const updateUrl = window.location.href + "update/"
+const deleteUrl = window.location.href + "delete/"
 
 const updateForm = document.getElementById('update-form')
 const deleteForm = document.getElementById('delete-form')
@@ -69,7 +69,7 @@ updateForm.addEventListener('submit', e=>{
 
     $.ajax({
         type: 'POST',
-        url: updateurl,
+        url: updateUrl,
         data: {
             'csrfmiddlewaretoken': csrf[0].value,
             'title': titleInput.value,
@@ -80,6 +80,25 @@ updateForm.addEventListener('submit', e=>{
             handleAlerts('success', 'post has been updated')
             title.textContent = response.title
             body.textContent = response.body
+        },
+        error: function(error){
+            console.log(error)
+        }
+    })
+})
+
+deleteForm.addEventListener('submit', e=>{
+    e.preventDefault()
+
+    $.ajax({
+        type: 'POST',
+        url: deleteUrl,
+        data:{
+            'csrfmiddlewaretoken': csrf[0].value,
+        },
+        success: function(response){
+            window.location.href = window.location.origin
+            localStorage.setItem('title', titleInput.value)
         },
         error: function(error){
             console.log(error)
