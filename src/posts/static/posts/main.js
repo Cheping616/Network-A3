@@ -67,7 +67,7 @@ const getData = () => {
             console.log(response)
             const data = response.data
             setTimeout(() => {
-                spinnerBox.classList.add('not_visible')
+                spinnerBox.classList.add('not-visible')
                 console.log(data)
                 data.forEach(el => {
                     postsBox.innerHTML += `
