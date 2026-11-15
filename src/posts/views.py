@@ -75,6 +75,7 @@ def post_detail_data_view(request, pk):
             'body': obj.body,
             'author': obj.author.user.username,
             'logged_in': request.user.username,
+            'avatar': obj.author.avatar.url
         }
         return JsonResponse({'data':data})
     return redirect('post:main-board')

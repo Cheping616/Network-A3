@@ -18,6 +18,10 @@ const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+const authorBox = document.getElementById('author-box')
+const authorAvatar = document.getElementById('author-avatar')
+const authorName = document.getElementById('author-name')
+
 // backBtn.addEventListener('click', ()=>{
 //     history.back()
 // })
@@ -54,6 +58,9 @@ $.ajax({
         titleInput.value = data.title
         bodyInput.value = data.body
 
+        authorAvatar.setAttribute('src', data.avatar)
+        authorName.textContent = data.author
+        authorBox.classList.remove('not-visible')
         spinnerBox.classList.add('not-visible')
     },
     error:function(error){
